@@ -1,0 +1,52 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: postgres
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    env_file:
+      - .env.dev.prod
+    environment:
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_USER: vlad
+      POSTGRES_PASSWORD: password
+    restart: always
+    ports:
+      - "5432:5432"
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server
+    restart: always
+    environment:
+      HOST: localhost
+      PORT: 6000
+      POSTGRES_DB_HOST: postgres
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB_USERNAME: vlad
+      POSTGRES_DB_PASSWORD: password
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    ports:
+      - "6000:6000"
