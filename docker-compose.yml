@@ -5,30 +5,28 @@ services:
     container_name: postgres
     volumes:
       - ./database:/var/lib/postgresql/data
-    env_file:
-      - .env.dev.prod
     environment:
       PGDATA: /var/lib/postgresql/data
-      POSTGRES_USER: vlad
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ${POSTGRES_DB_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_DB_PASSWORD}
     restart: always
     ports:
       - "5432:5432"
 
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: always
-    volumes:
-      - ./pgadmin:/var/lib/pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    depends_on:
-      - postgres
-    ports:
-      - "5050:80"
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    container_name: pgadmin
+#    restart: always
+#    volumes:
+#      - ./pgadmin:/var/lib/pgadmin
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: root@root.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    depends_on:
+#      - postgres
+#    ports:
+#      - "5050:80"
 
 
   server:
@@ -39,14 +37,16 @@ services:
     restart: always
     environment:
       HOST: localhost
-      PORT: 6000
+      PORT: 3000
       POSTGRES_DB_HOST: postgres
       POSTGRES_DB_PORT: 5432
-      POSTGRES_DB_USERNAME: vlad
-      POSTGRES_DB_PASSWORD: password
+      POSTGRES_DB_USERNAME: ${POSTGRES_DB_USERNAME}
+      POSTGRES_DB_PASSWORD: ${POSTGRES_DB_PASSWORD}
+    env_file:
+      - .env.prod
     links:
       - postgres
     depends_on:
       - postgres
     ports:
-      - "6000:6000"
+      - "3000:3000"

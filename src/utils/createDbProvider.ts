@@ -5,10 +5,10 @@ config()
 
 
 const defaultOptions: TypeOrmModuleOptions  = {
-  host: process.env.POSTGRES_DB_HOST,
-  port: +process.env.POSTGRES_DB_PORT,
-  username: process.env.POSTGRES_DB_USERNAME,
-  password: process.env.POSTGRES_DB_PASSWORD,
+  host: 'localhost',
+  port: 5432,
+  username: 'vlad',
+  password: 'password',
   synchronize: true,
   autoLoadEntities: true,
 }

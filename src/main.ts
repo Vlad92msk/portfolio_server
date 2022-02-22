@@ -9,8 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   app.use(cookieParser());
   app.enableCors();
-  await app.listen(process.env.PORT, process.env.HOST)
-  console.log(`Сервер доступен - http://${process.env.HOST}:${process.env.PORT}/graphql`)
+  await app.listen(3000)
+  console.log(`Сервер доступен - http://localhost:3000/graphql`)
 }
 
 bootstrap()
