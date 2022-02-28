@@ -1,8 +1,8 @@
 import { InputType, Field } from '@nestjs/graphql'
 import { IsEnum, IsString } from 'class-validator'
 import { Specialty } from '../interfaces/specialty'
-import { enumMessage } from '~server/utils/enumeration'
-import { IconName } from '~public/icon.model'
+import { enumMessage } from '@utils/enumeration'
+import { IconName } from '@models/icon.model'
 
 @InputType({ description: 'Найти навык' })
 export class FindSkillInput {

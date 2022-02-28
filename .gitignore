@@ -35,8 +35,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # files
-.env.dev
+.env
 .env.prod
 
-#database
-.database
+/database
+/pgadmin

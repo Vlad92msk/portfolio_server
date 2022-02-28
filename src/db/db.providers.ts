@@ -1,6 +1,6 @@
 import { config } from 'dotenv'
 import { PostgreConstants } from './db.constants'
-import { createDbProvider } from '~server/utils/createDbProvider'
+import { createDbProvider } from '@utils/createDbProvider'
 
 config()
 

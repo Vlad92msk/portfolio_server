@@ -1,14 +1,21 @@
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ConnectModule } from '~server/lib/connect/connection.module'
-import { PortfolioModule } from '~server/lib/portfolio/portfolio.module'
-import { AuthMiddleware } from '~server/lib/connect/auth/middleware/auth.middleware'
-import { CosmoModule } from '~server/lib/cosmo/cosmo.module'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import {MiddlewareConsumer, Module, RequestMethod} from '@nestjs/common'
+import {ApolloDriver, ApolloDriverConfig} from '@nestjs/apollo'
+import {ConfigModule} from "@nestjs/config";
+
+import {GraphQLModule} from '@nestjs/graphql'
+import mainConfig from '@config/main.config'
+import {ConnectModule} from "@lib/connect/connection.module";
+import {PortfolioModule} from "@lib/portfolio/portfolio.module";
+import {CosmoModule} from "@lib/cosmo/cosmo.module";
+import {AuthMiddleware} from "@lib/connect/auth/middleware/auth.middleware";
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [mainConfig]
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
@@ -18,7 +25,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
       //   origin: 'https://studio.apollographql.com',
       //   credentials: true,
       // },
-      context: ({ req, res }) => ({ req, res })
+      context: ({req, res}) => ({req, res})
     }),
     ConnectModule,
     PortfolioModule,

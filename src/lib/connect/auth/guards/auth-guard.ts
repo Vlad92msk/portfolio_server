@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
 import { GqlExecutionContext } from '@nestjs/graphql'
-import { AuthStatus, ExpressRequest } from '~server/lib/connect/auth/middleware/auth.middleware'
-import { authErrors } from '~server/lib/connect/auth/errors'
+import { AuthStatus, ExpressRequest } from '@lib/connect/auth/middleware/auth.middleware'
+import { authErrors } from '@lib/connect/auth/errors'
 
 @Injectable()
 export class AuthGuard implements CanActivate {

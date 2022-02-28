@@ -1,17 +1,7 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { Connection, createConnection } from 'typeorm'
 import { config } from 'dotenv'
 config()
 
-
-const defaultOptions: TypeOrmModuleOptions  = {
-  host: 'localhost',
-  port: 5432,
-  username: 'vlad',
-  password: 'password',
-  synchronize: true,
-  autoLoadEntities: true,
-}
 
 type createDbProviderType = {
   provide: string
@@ -27,7 +17,11 @@ export const createDbProvider = ({ provide, dbName }: createDbProviderType): Pro
   provide,
   useFactory: async () =>
     await createConnection({
-      ...defaultOptions,
+      host: process.env.POSTGRES_DB_HOST,
+      port: +process.env.POSTGRES_DB_PORT,
+      username: process.env.POSTGRES_DB_USERNAME,
+      password: process.env.POSTGRES_DB_PASSWORD,
+      synchronize: process.env.CLIENT_HOST === 'localhost',
       type: 'postgres',
       name: dbName,
       database: dbName,

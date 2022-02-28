@@ -1,4 +1,4 @@
-import { DefaultObject } from '~public/defaultObject.model'
+import { DefaultObject } from '@models/defaultObject.model'
 
 /**
  * Создает строку для вывода сообщения

@@ -2,11 +2,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "~client/*": ["client/*"],
-      "~server/*": ["./src/*"],
-//      "~shared/*": ["shared/*"],
-      "@shared/*": ["client/shared/*"],
-      "~public/*": ["./src/models/*"]
+      "@src/*": ["src/*"],
+      "@config/*": ["src/config/*"],
+      "@db/*": ["src/db/*"],
+      "@lib/*": ["src/lib/*"],
+      "@models/*": ["src/models/*"],
+      "@utils/*": ["src/utils/*"],
     }
   }
 }

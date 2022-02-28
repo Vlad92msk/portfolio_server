@@ -3,7 +3,7 @@ import { from } from 'rxjs'
 import { SkillsService } from './skills.service'
 import { Skill } from './entitys/skills.entity'
 import { CreateSkillInput } from './inputs/create-skill.input'
-import { MyObservable } from '~server/types'
+import { MyObservable } from '@src/types'
 
 @Resolver(() => Skill)
 export class SkillsResolver {

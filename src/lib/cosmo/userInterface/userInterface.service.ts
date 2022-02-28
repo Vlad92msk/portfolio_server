@@ -1,13 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { catchError, from, of, switchMap } from 'rxjs'
-import { PostgreConstants } from '~server/db/db.constants'
-import { catchErrorCustom } from '~server/utils/catchErrorCustom'
-import { LanguageSupported, MyObservable } from '~server/types'
-import { createLanguageVariables, CreateLanguageVariablesType } from '~server/utils/createLanguageVariables'
+
+import { PostgreConstants } from '@db/db.constants'
+import { catchErrorCustom } from '@utils/catchErrorCustom'
+import { createLanguageVariables, CreateLanguageVariablesType } from '@utils/createLanguageVariables'
 import { Interface_cosmo_ru } from './entitys/userInterface_ru.entity'
 import { Interface_cosmo_en } from './entitys/userInterface_en.entity'
 import { UserInterfaceErrors } from './errors'
+import { LanguageSupported, MyObservable } from '@src/types'
 
 const { COSMO: { schemas: { INTERFACE } } } = PostgreConstants
 

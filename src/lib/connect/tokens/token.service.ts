@@ -2,15 +2,15 @@ import { Inject, Injectable } from '@nestjs/common'
 import { GraphQLError } from 'graphql'
 import { Repository } from 'typeorm'
 import { sign, verify } from 'jsonwebtoken'
-
-import { PostgreConstants } from '~server/db/db.constants'
-import { Token } from './entitys/token.entity'
-import { TokenInput } from './inputs/create-token.input'
-import { User } from '~server/lib/connect/users/entitys/user.entity'
-import { Role } from '~server/lib/connect/roles/entitys/role.entity'
-import { StatusEnum } from '~server/lib/connect/users/interfaces/status'
 import { config } from 'dotenv'
-import { tokenErrors } from '~server/lib/connect/tokens/errors'
+
+import { PostgreConstants } from '@db/db.constants'
+import { User } from '@lib/connect/users/entitys/user.entity'
+import { Role } from '@lib/connect/roles/entitys/role.entity'
+import { StatusEnum } from '@lib/connect/users/interfaces/status'
+import { tokenErrors } from '@lib/connect/tokens/errors'
+import { TokenInput } from './inputs/create-token.input'
+import { Token } from './entitys/token.entity'
 
 config()
 

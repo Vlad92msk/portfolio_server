@@ -4,12 +4,12 @@ import { CookieOptions } from 'express'
 import { GraphQLError } from 'graphql'
 import { from } from 'rxjs'
 
-import { AuthService } from './auth.service'
+import { User } from '@lib/connect/users/entitys/user.entity'
+import { Token } from '@lib/connect/users/decorators/user.decorator'
+import { CookieEnum } from '@lib/connect/auth/types/cookie'
 import { CreateUsersInput } from '../users/inputs/create-user.input'
 import { SignInInput } from './inputs/signIn.input'
-import { User } from '~server/lib/connect/users/entitys/user.entity'
-import { Token } from '~server/lib/connect/users/decorators/user.decorator'
-import { CookieEnum } from '~server/lib/connect/auth/types/cookie'
+import { AuthService } from './auth.service'
 
 
 @Resolver(() => User)
